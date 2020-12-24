@@ -1,0 +1,6 @@
+{% extends 'gallery/base.html' %}
+
+{% block content %}
+    <img src="{{ image.image_path.url }}" alt="Image">
+    {% include "gallery/download_form.html" %}
+{% endblock content %}
