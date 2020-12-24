@@ -1,5 +1,4 @@
 import io
-import os
 import magic
 
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -20,7 +19,7 @@ def index(request):
 
 
 def detail(request, image_id):
-    image = get_object_or_404(Picture, picture_uuid=image_id)
+    image = get_object_or_404(Picture, slug=image_id)
     context = {'image': image}
 
     # if this is a POST request we need to process the form data
@@ -42,7 +41,7 @@ def detail(request, image_id):
 
 
 def download_image(request, image_id, watermark):
-    image = get_object_or_404(Picture, picture_uuid=image_id)
+    image = get_object_or_404(Picture, slug=image_id)
     image_path = image.image_path.path
     image_buffer = put_watermark(image_path, watermark)
     content_type = magic.from_buffer(image_buffer, True)

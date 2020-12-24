@@ -2,4 +2,8 @@ from django.contrib import admin
 from .models import Picture
 
 
-admin.site.register(Picture)
+class PictureAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("description",)}
+
+
+admin.site.register(Picture, PictureAdmin)
